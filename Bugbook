@@ -1,0 +1,43 @@
+'use client';
+import { useState } from "react";
+
+export default function Home() {
+  const [search, setSearch] = useState("");
+
+  const books = [
+    { title: "Digital Design", category: "Engineering" },
+    { title: "CMOS VLSI Design", category: "Engineering" },
+    { title: "Atomic Habits", category: "Growth" },
+    { title: "Deep Work", category: "Growth" },
+  ];
+
+  const filtered = books.filter((b) =>
+    b.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>📚 BookHub</h1>
+
+      <input
+        type="text"
+        placeholder="Search books..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ padding: "10px", width: "100%", marginBottom: "20px" }}
+      />
+
+      <div>
+        {filtered.map((book, i) => (
+          <div key={i} style={{ marginBottom: "15px" }}>
+            <h3>{book.title}</h3>
+            <p>{book.category}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2>🌍 Community</h2>
+      <p>Connect with engineering students worldwide (coming soon)</p>
+    </div>
+  );
+}
